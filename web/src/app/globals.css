@@ -1,0 +1,175 @@
+:root {
+  color-scheme: dark;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  background: #09090b;
+  color: #e4e4e7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  color: #f59e0b;
+}
+
+.wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+h1 {
+  color: #f59e0b;
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem;
+}
+
+h2 {
+  font-size: 1rem;
+  margin: 0 0 0.75rem;
+}
+
+.muted {
+  color: #71717a;
+  font-size: 0.85rem;
+}
+
+.msg {
+  color: #fca5a5;
+  font-size: 0.85rem;
+}
+
+.okmsg {
+  color: #6ee7b7;
+  font-size: 0.85rem;
+}
+
+.tx {
+  color: #6ee7b7;
+  font-size: 0.75rem;
+  word-break: break-all;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+@media (min-width: 760px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.card {
+  background: #18181b;
+  border: 1px solid #27272a;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: #a1a1aa;
+}
+
+input,
+textarea {
+  width: 100%;
+  margin-top: 0.25rem;
+  background: #09090b;
+  border: 1px solid #3f3f46;
+  border-radius: 8px;
+  color: #fff;
+  padding: 0.5rem;
+}
+
+button {
+  margin-top: 0.75rem;
+  background: #d97706;
+  border: 0;
+  color: #1c1917;
+  font-weight: 700;
+  padding: 0.5rem 0.85rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button.ghost {
+  background: transparent;
+  border: 1px solid #3f3f46;
+  color: #e4e4e7;
+}
+
+.pill {
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  background: #27272a;
+  font-size: 0.8rem;
+}
+
+.pill.ok {
+  color: #6ee7b7;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+th,
+td {
+  border-bottom: 1px solid #27272a;
+  padding: 0.45rem;
+  text-align: left;
+}
+
+.ok {
+  color: #6ee7b7;
+}
+
+.bad {
+  color: #fca5a5;
+}
+
+.mono {
+  font-family: ui-monospace, monospace;
+  font-size: 0.75rem;
+}
+
+.footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #27272a;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.8rem;
+}
+
+.roles ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
