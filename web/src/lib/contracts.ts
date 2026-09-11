@@ -39,6 +39,6 @@ export async function attachSource(provider: unknown, id: string, url: string) {
   return writeAndWait(provider, CONTRACT_ADDRESS, "attach_source", [id, url]);
 }
 
-export async function resolve(provider: unknown, id: string) {
-  return writeAndWait(provider, CONTRACT_ADDRESS, "resolve", [id]);
+export async function settle(provider: unknown, id: string) {
+  return writeAndWait(provider, CONTRACT_ADDRESS, "settle", [id]);
 }

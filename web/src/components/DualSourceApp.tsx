@@ -9,7 +9,7 @@ import {
   getStats,
   listIds,
   openQuestion,
-  resolve,
+  settle,
   type QuestionRow,
 } from "@/lib/contracts";
 import { useWallet } from "./WalletProvider";
@@ -27,6 +27,7 @@ export function DualSourceApp() {
   const [qid, setQid] = useState("q1");
   const [question, setQuestion] = useState("Does the page contain Hello world?");
   const [url, setUrl] = useState(DEMO_URL);
+
 
   const refresh = useCallback(async () => {
     setLoading(true);
@@ -150,12 +151,12 @@ export function DualSourceApp() {
           <button
             type="button"
             disabled={!!busy}
-            onClick={() => void run("resolve", () => resolve(provider, qid))}
+            onClick={() => void run("settle", () => settle(provider, qid))}
           >
-            resolve
+            settle
           </button>
         </div>
-        <p className="muted">Call attach_source twice (A then B), then resolve.</p>
+        <p className="muted">Call attach_source twice (A then B), then settle.</p>
       </section>
     </main>
   );

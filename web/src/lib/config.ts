@@ -1,5 +1,5 @@
 export const CONTRACT_ADDRESS = (process.env.NEXT_PUBLIC_DUALSOURCE_ADDRESS ??
-  "0x0000000000000000000000000000000000000000") as `0x${string}`;
+  "0xF53cf71b99d17a37f00238f0d71F3C60d88A2079") as `0x${string}`;
 
 export const EXPLORER = `https://explorer-studio.genlayer.com/address/${CONTRACT_ADDRESS}`;
 
