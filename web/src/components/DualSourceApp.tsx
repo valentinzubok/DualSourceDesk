@@ -136,7 +136,9 @@ export function DualSourceApp() {
             type="button"
             disabled={!!busy}
             onClick={() =>
-              void run("open", () => openQuestion(provider, qid, question))
+              void run("open", () =>
+                openQuestion(address as `0x${string}`, provider, qid, question),
+              )
             }
           >
             open_question
@@ -144,14 +146,22 @@ export function DualSourceApp() {
           <button
             type="button"
             disabled={!!busy}
-            onClick={() => void run("attach", () => attachSource(provider, qid, url))}
+            onClick={() =>
+              void run("attach", () =>
+                attachSource(address as `0x${string}`, provider, qid, url),
+              )
+            }
           >
             attach_source
           </button>
           <button
             type="button"
             disabled={!!busy}
-            onClick={() => void run("settle", () => settle(provider, qid))}
+            onClick={() =>
+              void run("settle", () =>
+                settle(address as `0x${string}`, provider, qid),
+              )
+            }
           >
             settle
           </button>

@@ -27,7 +27,7 @@ Use case: open_question → attach_source ×2 (freeze SHA-256) → resolve with 
 
 Intelligent Contract (in-repo): contracts/DualSource.py
 Live app: REPLACE_VERCEL_URL
-Studionet: REPLACE_ADDRESS
+Studionet: 0xF53cf71b99d17a37f00238f0d71F3C60d88A2079
 GitHub: https://github.com/valentinzubok/DualSourceDesk
 
 Reads without wallet. Writes need MetaMask.

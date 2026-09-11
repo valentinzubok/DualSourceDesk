@@ -1,5 +1,5 @@
 import { CONTRACT_ADDRESS } from "./config";
-import { parseJson, readContract, writeAndWait } from "./genlayer";
+import { type Address, parseJson, readContract, writeAndWait } from "./genlayer";
 
 export type QuestionRow = {
   question_id: string;
@@ -31,14 +31,27 @@ export async function getStats() {
   return parseJson(raw, null);
 }
 
-export async function openQuestion(provider: unknown, id: string, question: string) {
-  return writeAndWait(provider, CONTRACT_ADDRESS, "open_question", [id, question]);
+export async function openQuestion(
+  account: Address,
+  provider: unknown,
+  id: string,
+  question: string,
+) {
+  return writeAndWait(account, provider, CONTRACT_ADDRESS, "open_question", [
+    id,
+    question,
+  ]);
 }
 
-export async function attachSource(provider: unknown, id: string, url: string) {
-  return writeAndWait(provider, CONTRACT_ADDRESS, "attach_source", [id, url]);
+export async function attachSource(
+  account: Address,
+  provider: unknown,
+  id: string,
+  url: string,
+) {
+  return writeAndWait(account, provider, CONTRACT_ADDRESS, "attach_source", [id, url]);
 }
 
-export async function settle(provider: unknown, id: string) {
-  return writeAndWait(provider, CONTRACT_ADDRESS, "settle", [id]);
+export async function settle(account: Address, provider: unknown, id: string) {
+  return writeAndWait(account, provider, CONTRACT_ADDRESS, "settle", [id]);
 }
