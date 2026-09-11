@@ -26,7 +26,7 @@ DualSource Desk is a GenLayer Project: Next.js console for dual-source fact reso
 Use case: open_question → attach_source ×2 (freeze SHA-256) → resolve with LLM consensus on {"favor":"a"|"b"|"tie"} from frozen previews only.
 
 Intelligent Contract (in-repo): contracts/DualSource.py
-Live app: REPLACE_VERCEL_URL
+Live app: https://dualsourcedesk.vercel.app
 Studionet: 0xF53cf71b99d17a37f00238f0d71F3C60d88A2079
 GitHub: https://github.com/valentinzubok/DualSourceDesk
 
@@ -35,7 +35,7 @@ Reads without wallet. Writes need MetaMask.
 
 ## Evidence
 1. GitHub
-2. Vercel
+2. https://dualsourcedesk.vercel.app
 3. Explorer address
 4. Screenshot
 5. DualSource.py blob
