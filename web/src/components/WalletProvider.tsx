@@ -9,8 +9,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { createClient } from "genlayer-js";
-import { studionet } from "genlayer-js/chains";
+import { CHAIN_ID, EXPLORER_BASE, RPC_URL } from "@/lib/config";
 import type { Address } from "@/lib/genlayer";
 
 type EthereumProvider = {
@@ -35,6 +34,27 @@ function getEthereum(): EthereumProvider | undefined {
   return (window as unknown as { ethereum?: EthereumProvider }).ethereum;
 }
 
+async function ensureStudioDev(eth: EthereumProvider) {
+  const hexId = `0x${CHAIN_ID.toString(16)}`;
+  try {
+    await eth.request({ method: "wallet_switchEthereumChain", params: [{ chainId: hexId }] });
+  } catch (e) {
+    if ((e as { code?: number })?.code !== 4902) throw e;
+    await eth.request({
+      method: "wallet_addEthereumChain",
+      params: [
+        {
+          chainId: hexId,
+          chainName: "GenLayer Studio Dev",
+          nativeCurrency: { name: "GEN", symbol: "GEN", decimals: 18 },
+          rpcUrls: [RPC_URL],
+          blockExplorerUrls: [EXPLORER_BASE],
+        },
+      ],
+    });
+  }
+}
+
 export function WalletProvider({ children }: { children: ReactNode }) {
   const [address, setAddress] = useState<Address | null>(null);
   const [provider, setProvider] = useState<EthereumProvider | null>(null);
@@ -44,14 +64,14 @@ export function WalletProvider({ children }: { children: ReactNode }) {
   const bind = useCallback(async (eth: EthereumProvider, acc: string) => {
     const typed = acc as Address;
     try {
-      const client = createClient({ chain: studionet, account: typed, provider: eth });
-      await client.connect("studionet");
+      // Switch/add 61997 directly; client.connect("studionet") would move the wallet to 61999.
+      await ensureStudioDev(eth);
       setAddress(typed);
       setProvider(eth);
       setReady(true);
       setError("");
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Studionet connect failed");
+      setError(e instanceof Error ? e.message : "Studio Dev connect failed");
       setReady(false);
     }
   }, []);

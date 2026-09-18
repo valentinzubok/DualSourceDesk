@@ -1,6 +1,7 @@
-# { "Depends": "py-genlayer:15qfivjvy80800rh998pcxmd2m8va1wq2qzqhz850n8ggcr4i9q0" }
+# v0.3.0
+# { "Depends": "py-genlayer:5jycge4q8k23462jtb0b9fyey1s9qz928sz2nbrd9mg4sxqg2qng" }
 
-from genlayer import *
+import genlayer as gl
 import hashlib
 import json
 import re
@@ -88,9 +89,9 @@ def _capture_page(url: str) -> str:
         "status": "error",
     }
     try:
-        raw = gl.get_webpage(url, mode="text")
+        raw = gl.nondet.web.render(url, mode="text")
         if raw is None or str(raw).strip() == "":
-            raw = gl.get_webpage(url, mode="html")
+            raw = gl.nondet.web.render(url, mode="html")
         normalized = _normalize(raw if raw is not None else "")
         if normalized == "":
             entry["status"] = "empty"
@@ -119,7 +120,7 @@ def _judge_prefer_a(question: str, preview_a: str, preview_b: str) -> str:
     try:
         out = gl.nondet.exec_prompt(judge, response_format="json")
     except Exception:
-        out = gl.exec_prompt(judge)
+        out = gl.nondet.exec_prompt(judge)
     prefer_a = False
     if isinstance(out, dict):
         prefer_a = bool(out.get("prefer_a", False))
@@ -131,7 +132,7 @@ def _judge_prefer_a(question: str, preview_a: str, preview_b: str) -> str:
     return json.dumps({"prefer_a": prefer_a}, sort_keys=True, separators=(",", ":"))
 
 
-class DualSource(gl.Contract):
+class DualSource(gl.contract.Contract):
     owner: str
     questions_json: str
     order_json: str
@@ -218,7 +219,7 @@ class DualSource(gl.Contract):
         def fetch_fn() -> str:
             return _capture_page(href)
 
-        snap_json = gl.eq_principle_strict_eq(fetch_fn)
+        snap_json = gl.eq_principle.strict_eq(fetch_fn)
         snap = json.loads(snap_json)
         if snap.get("status") != "ok":
             raise Exception("source url fetch failed or empty")
@@ -271,7 +272,7 @@ class DualSource(gl.Contract):
             def tie_fn() -> str:
                 return json.dumps({"favor": "tie"}, sort_keys=True, separators=(",", ":"))
 
-            favor_json = gl.eq_principle_strict_eq(tie_fn)
+            favor_json = gl.eq_principle.strict_eq(tie_fn)
             favor = "tie"
             if isinstance(favor_json, str):
                 try:
@@ -289,7 +290,7 @@ class DualSource(gl.Contract):
                     principle="boolean field prefer_a must be identical across validators",
                 )
             except Exception:
-                verdict_json = gl.eq_principle_strict_eq(leader_fn)
+                verdict_json = gl.eq_principle.strict_eq(leader_fn)
 
             verdict = (
                 json.loads(verdict_json) if isinstance(verdict_json, str) else verdict_json
