@@ -32,3 +32,12 @@ shasum -a 256 contracts/DualSource.py
 | 8 | `settle("q2")` | validators' LLMs on frozen previews give **favor = a** | `0xaa69776332a86058843a6407e08566496020fe5f19920d02de53e98843a8ae9a` |
 
 State (`get_stats`): `{"total": 2, "by_status": {"resolved": 2}}`
+
+## Demo video
+
+[`assets/demo/dualsource-desk-demo.mp4`](https://github.com/valentinzubok/DualSourceDesk/blob/main/assets/demo/dualsource-desk-demo.mp4): 2:14 recording of the live app, with no mocks. It shows:
+- chain state loaded without a wallet → connect
+- `open_question("q-demo")` → `attach_source` hello.html → `attach_source` example.com → `settle`
+- the result: **favor = b**, and the tx on the explorer
+
+For an unattended recording, a small EIP-1193 wallet signing with test keys is injected in place of the MetaMask popup. Consensus waits are sped up 8x and rate-limit pauses are cut.

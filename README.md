@@ -11,6 +11,7 @@ two web sources on GenLayer. Validators freeze both pages under SHA-256 consensu
 | **Live app** | https://valentinzubok.github.io/DualSourceDesk/ (mirror: https://dualsourcedesk.vercel.app) |
 | **Contract** | Studio Dev (chain 61997) [`0xF4402034209D51F683ae5BC61ddd6b1AdC610ED3`](https://explorer-studio-dev.genlayer.com/address/0xF4402034209D51F683ae5BC61ddd6b1AdC610ED3) |
 | **Source verification** | on-chain code sha256 = [`contracts/DualSource.py`](contracts/DualSource.py) (`325e8aa7…`), see [`STUDIO_DEV_DEPLOY.md`](STUDIO_DEV_DEPLOY.md) |
+| **Demo video** | [`assets/demo/dualsource-desk-demo.mp4`](https://github.com/valentinzubok/DualSourceDesk/blob/main/assets/demo/dualsource-desk-demo.mp4) (2:14, real Studio Dev txs) |
 | **Standalone contract** | [valentinzubok/DualSource](https://github.com/valentinzubok/DualSource) (accepted Intelligent Contract) |
 
 ## How GenLayer is used
